@@ -7,19 +7,16 @@ export default function NavBar() {
       <div className="mx-auto max-w-6xl px-4 py-5 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3 py-1">
-          <Image
-            src="/logo.png"
-            width={72}
-            height={72}
-            alt="KI.service Logo"
-            className="drop-shadow-lg"
-            priority
-          />
-          <span className="text-white font-semibold text-lg">
-            ki.service
-          </span>
-        </Link>
+        <Link href="/" className="flex items-center pt-1">
+  <Image
+    src="/logo.png"
+    width={88}
+    height={88}
+    alt="KI.service – Produktisierte KI-Agenten für Unternehmen"
+    className="drop-shadow-xl"
+    priority
+  />
+</Link>
 
         {/* NAVIGATION */}
         <nav className="hidden md:flex items-center gap-8 text-sm text-white/80">
