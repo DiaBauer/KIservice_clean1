@@ -32,6 +32,7 @@ export default function Hero(){
           <a href="#agenten" className="px-5 py-3 rounded-lg border border-primary/60 text-white hover:bg-white/10 transition">Agenten vergleichen</a>
         </div>
       </div>
+            
       <motion.div className="relative h-[340px] md:h-[460px]" initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} transition={{duration:0.8}} viewport={{once:true}}>
         <Image src="/hero-brain.png" alt="Neurales Netz" fill className="object-contain pointer-events-none select-none" priority/>
       </motion.div>
