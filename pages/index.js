@@ -5,68 +5,188 @@ import AnimatedBackground from '@/components/AnimatedBackground'
 import AgentCard from '@/components/AgentCard'
 import Reasons from '@/components/Reasons'
 import Footer from '@/components/Footer'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
-export default function Home(){return (<>
- <title>KI.Service – KI-Agenten für Unternehmen | DSGVO-konform & EU-ready</title>
-<meta
-  name="description"
-  content="Produktisierte KI-Agenten für Unternehmen: Telefonagenten, Wissensagenten & Assistenz – sofort einsatzbereit, DSGVO-konform, EU-AI-Act-ready. Keine komplexen KI-Projekte."
-/>
-    <link rel="icon" href="/logo.png"/>
-  </Head>
-  <AnimatedBackground/><NavBar/>
-  <main>
-    <Hero/>
-    <div className="mt-6 text-center text-sm text-gray-400">
-  🔒 DSGVO-konform · 🇪🇺 EU-AI-Act-ready · 🇩🇪 Made in Germany
-</div>
-    <section id="agenten" className="py-12 md:py-16"><div className="mx-auto max-w-6xl px-4">
-      <motion.h2 className="text-2xl md:text-3xl font-bold mb-8 text-white" initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>Unsere <span className="text-accent">Agenten</span></motion.h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        <AgentCard title="Support‑GPT" subtitle="Firmenspezifische Wissensbasis für Self‑Service & Chatbot." cta="Jetzt starten"/>
-        <AgentCard title="Telefonberater · Voice‑Agent (Custom GPT)" subtitle="Voice‑Bots für Hotline & telefonische Beratung – natürlich & effizient." cta="Jetzt testen"/>
-        <AgentCard title="Produktberater · GPT‑Agent (Custom GPT)" subtitle="Berät zu Produkten & Leistungen, steigert Conversion & Entlastung im Vertrieb." cta="Demo anfragen"/>
-      </div>
-      <div className="mt-6 grid md:grid-cols-3 gap-6">
-        <AgentCard
-  title="Weitere spezialisierte Agenten"
-  subtitle="Je nach Anwendungsfall entwickeln wir weitere KI-Agenten passgenau für Ihr Unternehmen."
-  cta="Jetzt informieren"
-/>
-      </div>
-    </div></section>
-    <Reasons/>
-    <section id="problem" className="py-16"><div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-center">
-      <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Viele investieren in KI – doch oft <span className="text-accent">verpufft</span> es im Projekt.</h2>
-        <p className="text-white/80 mb-4">Wir liefern <strong>fertige, getestete Agenten</strong> statt PowerPoint‑Versprechen. Starten Sie in Tagen, nicht in Monaten – mit klaren KPIs und einem Setup, das sich an Ihre Prozesse anpasst.</p>
-        <ul className="space-y-2 text-white/80 list-disc list-inside">
-          <li>Messbare Entlastung im Support</li><li>Schnellere Reaktionszeiten & bessere Customer Experience</li><li>Skalierbare Automatisierungen ohne Vendor‑Lock‑in</li>
-        </ul>
-        <div className="mt-6"><a href="#kontakt" className="px-5 py-3 rounded-lg bg-primary text-black font-semibold hover:brightness-110">Unverbindliches Gespräch</a></div>
-      </motion.div>
-      <motion.div className="glow-border rounded-2xl p-6 min-h-[220px]" initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}>
-        <h3 className="text-xl font-semibold mb-3">Drei Gründe, jetzt zu starten</h3>
-        <ol className="space-y-3 list-decimal list-inside text-white/80">
-          <li><strong>Sofortiger Effekt:</strong> Erste Agenten in wenigen Tagen live.</li>
-          <li><strong>Kalkulierbare Kosten:</strong> Transparente Pakete & klare Laufzeiten.</li>
-          <li><strong>Zukunftssicherheit:</strong> Moderne Architektur (Next.js, APIs, LLMs, RAG).</li>
-        </ol>
-      </motion.div>
-    </div></section>
-    <section id="kontakt" className="py-16 bg-[rgba(255,255,255,0.03)]"><div className="mx-auto max-w-3xl px-4">
-      <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-white" initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>Kurz sprechen? Wir melden uns.</motion.h2>
-      <form className="space-y-4" onSubmit={(e)=>{e.preventDefault(); alert('Danke! Wir melden uns umgehend bei Ihnen.');}}>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div><label className="block text-sm mb-1">Vor- & Nachname</label><input type="text" required className="w-full rounded-md bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-primary focus:outline-none p-2"/></div>
-          <div><label className="block text-sm mb-1">E‑Mail</label><input type="email" required className="w-full rounded-md bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-primary focus:outline-none p-2"/></div>
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>KI.Service – KI-Agenten für Unternehmen | DSGVO-konform & EU-ready</title>
+        <meta
+          name="description"
+          content="Produktisierte KI-Agenten für Unternehmen: Telefonagenten, Wissensagenten & Assistenz – sofort einsatzbereit, DSGVO-konform, EU-AI-Act-ready."
+        />
+        <link rel="icon" href="/logo.png" />
+      </Head>
+
+      <AnimatedBackground />
+      <NavBar />
+
+      <main>
+        <Hero />
+
+        <div className="mt-6 text-center text-sm text-gray-400">
+          🔒 DSGVO-konform · 🇪🇺 EU-AI-Act-ready · 🇩🇪 Made in Germany
         </div>
-        <div><label className="block text-sm mb-1">Ihr Anliegen</label><textarea rows={4} className="w-full rounded-md bg-white/5 border border-white/10 text-white p-2 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Kurze Beschreibung – z. B. 'Support‑Chatbot für E‑Commerce', 'Voice‑Agent für Hotline', etc."/></div>
-        <button type="submit" className="px-5 py-3 rounded-lg bg-primary text-black font-semibold hover:brightness-110">Absenden</button>
-      </form>
-      <p className="text-xs text-white/50 mt-4">Oder senden Sie uns eine Mail an <a className="underline" href="mailto:kontakt@ki.service">kontakt@ki.service</a>.</p>
-    </div></section>
-  </main>
-  <Footer/>
-</>)}
+
+        {/* AGENTEN */}
+        <section id="agenten" className="py-12 md:py-16">
+          <div className="mx-auto max-w-6xl px-4">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold mb-8 text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Unsere <span className="text-accent">Agenten</span>
+            </motion.h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <AgentCard
+                title="Support-GPT"
+                subtitle="Firmenspezifische Wissensbasis für Self-Service & Chatbot."
+                cta="Jetzt starten"
+              />
+              <AgentCard
+                title="Telefonberater · Voice-Agent (Custom GPT)"
+                subtitle="Voice-Bots für Hotline & telefonische Beratung – natürlich & effizient."
+                cta="Jetzt testen"
+              />
+              <AgentCard
+                title="Produktberater · GPT-Agent (Custom GPT)"
+                subtitle="Berät zu Produkten & Leistungen, steigert Conversion & Entlastung im Vertrieb."
+                cta="Demo anfragen"
+              />
+            </div>
+
+            <div className="mt-6 grid md:grid-cols-3 gap-6">
+              <AgentCard
+                title="Weitere spezialisierte Agenten"
+                subtitle="Je nach Anwendungsfall entwickeln wir weitere KI-Agenten passgenau für Ihr Unternehmen."
+                cta="Jetzt informieren"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* GRÜNDE */}
+        <Reasons />
+
+        {/* PROBLEM */}
+        <section id="problem" className="py-16">
+          <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Viele investieren in KI – doch oft <span className="text-accent">verpufft</span> es im Projekt.
+              </h2>
+              <p className="text-white/80 mb-4">
+                Wir liefern <strong>fertige, getestete Agenten</strong> statt PowerPoint-Versprechen.
+                Starten Sie in Tagen, nicht in Monaten – mit klaren KPIs und einem Setup,
+                das sich an Ihre Prozesse anpasst.
+              </p>
+              <ul className="space-y-2 text-white/80 list-disc list-inside">
+                <li>Messbare Entlastung im Support</li>
+                <li>Schnellere Reaktionszeiten & bessere Customer Experience</li>
+                <li>Skalierbare Automatisierungen ohne Vendor-Lock-in</li>
+              </ul>
+              <div className="mt-6">
+                <a
+                  href="#kontakt"
+                  className="px-5 py-3 rounded-lg bg-primary text-black font-semibold hover:brightness-110"
+                >
+                  Unverbindliches Gespräch
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="glow-border rounded-2xl p-6 min-h-[220px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl font-semibold mb-3">Drei Gründe, jetzt zu starten</h3>
+              <ol className="space-y-3 list-decimal list-inside text-white/80">
+                <li><strong>Sofortiger Effekt:</strong> Erste Agenten in wenigen Tagen live.</li>
+                <li><strong>Kalkulierbare Kosten:</strong> Transparente Pakete & klare Laufzeiten.</li>
+                <li><strong>Zukunftssicherheit:</strong> Moderne Architektur (Next.js, APIs, LLMs, RAG).</li>
+              </ol>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* KONTAKT */}
+        <section id="kontakt" className="py-16 bg-[rgba(255,255,255,0.03)]">
+          <div className="mx-auto max-w-3xl px-4">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold mb-6 text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Kurz sprechen? Wir melden uns.
+            </motion.h2>
+
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault()
+                alert('Danke! Wir melden uns umgehend bei Ihnen.')
+              }}
+            >
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm mb-1">Vor- & Nachname</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full rounded-md bg-white/5 border border-white/10 text-white p-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">E-Mail</label>
+                  <input
+                    type="email"
+                    required
+                    className="w-full rounded-md bg-white/5 border border-white/10 text-white p-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm mb-1">Ihr Anliegen</label>
+                <textarea
+                  rows={4}
+                  className="w-full rounded-md bg-white/5 border border-white/10 text-white p-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                  placeholder="Kurze Beschreibung – z. B. 'Support-Chatbot für E-Commerce', 'Voice-Agent für Hotline', etc."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="px-5 py-3 rounded-lg bg-primary text-black font-semibold hover:brightness-110"
+              >
+                Absenden
+              </button>
+            </form>
+
+            <p className="text-xs text-white/50 mt-4">
+              Oder senden Sie uns eine Mail an{' '}
+              <a className="underline" href="mailto:kontakt@ki.service">
+                kontakt@ki.service
+              </a>.
+            </p>
+          </div>
+        </section>
+
+        <Footer />
+      </main>
+    </>
+  )
+}
