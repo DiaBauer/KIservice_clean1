@@ -7,8 +7,7 @@ export default function Hero(){
   return (<section className="relative pt-28 pb-16 md:pt-32 md:pb-24 hero-gradient overflow-hidden">
     <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <motion.h1
-  className="text-4xl md:text-6xl font-extrabold leading-[1.1] text-white"
+        <motion.h1 className="text-4xl md:text-5xl font-extrabold leading-[1.15] text-white">"
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8 }}
