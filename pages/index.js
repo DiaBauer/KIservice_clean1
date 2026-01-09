@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         {/* AGENTEN */}
-        <section id="agenten" className="relative -mt-16 pt-10 pb-12 md:pt-12 md:pb-16">
+        <section id="agenten" className="relative -mt-20 pt-8 pb-12 md:pt-10 md:pb-16">
           <div className="mx-auto max-w-6xl px-4">
             <motion.h2
               className="text-2xl md:text-3xl font-bold mb-8 text-white"
