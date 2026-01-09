@@ -2,9 +2,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 export default function NavBar(){
   return (<header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-black/30 border-b border-white/10">
-    <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+    <div className="mx-auto max-w-6xl px-4 py-5 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-3">
-        <Image src="/logo.png" width={48} height={48} alt="KI.service Logo" className="rounded-sm shadow-glow"/>
+        <Image
+  src="/logo.png"
+  width={56}
+  height={56}
+  alt="KI.service Logo"
+  className="rounded-sm shadow-glow"
+/>
         <span className="text-white font-semibold">ki.service</span>
       </Link>
       <nav className="hidden md:flex items-center gap-8 text-sm text-white/80">
