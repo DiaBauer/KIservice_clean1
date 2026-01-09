@@ -8,7 +8,15 @@ export default function Hero(){
     <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <motion.h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] text-white" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.8}}>
-          <span className="text-white">24/7&nbsp;KI‑Assistent für Ihr Business&nbsp;–</span><br/><span className="text-accent">ohne komplizierte Projekte.</span>
+          <span className="text-white">
+  24/7&nbsp;<span className="text-accent">KI-Agenten</span> für Unternehmen&nbsp;–
+</span><br/>
+<span className="text-white">
+  24/7&nbsp;<span className="text-accent">KI-Agenten</span> für Unternehmen&nbsp;–
+</span><br/>
+<span className="text-accent">
+  ohne komplizierte KI-Projekte.
+</span>
         </motion.h1>
         <motion.p className="mt-6 text-white/80 max-w-xl" initial={{opacity:0,y:20}} animate={{opacity:1,y:0,transition:{delay:0.2}}}>
           Wir liefern: <strong>KI‑Agenten, die Ergebnisse bringen.</strong> Automatisieren Sie Kundenservice, Beratung &amp; Support – mit sofort einsatzbereiten GPT‑ und Voice‑Agenten.
