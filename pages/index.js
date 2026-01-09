@@ -8,15 +8,19 @@ import Footer from '@/components/Footer'
 import {motion} from 'framer-motion'
 
 export default function Home(){return (<>
-  <Head>
-    <title>ki.service – 24/7 KI‑Assistenten für Ihr Business</title>
-    <meta name="description" content="Produktisierte GPT‑ und Voice‑Agenten: sofort einsatzbereit, DSGVO‑konform, B2B‑ready. Automatisieren Sie Kundenservice, Beratung & Support – ohne komplizierte Projekte."/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>KI.Service – KI-Agenten für Unternehmen | DSGVO-konform & EU-ready</title>
+<meta
+  name="description"
+  content="Produktisierte KI-Agenten für Unternehmen: Telefonagenten, Wissensagenten & Assistenz – sofort einsatzbereit, DSGVO-konform, EU-AI-Act-ready. Keine komplexen KI-Projekte."
+/>
     <link rel="icon" href="/logo.png"/>
   </Head>
   <AnimatedBackground/><NavBar/>
   <main>
     <Hero/>
+    <div className="mt-6 text-center text-sm text-gray-400">
+  🔒 DSGVO-konform · 🇪🇺 EU-AI-Act-ready · 🇩🇪 Made in Germany
+</div>
     <section id="agenten" className="py-12 md:py-16"><div className="mx-auto max-w-6xl px-4">
       <motion.h2 className="text-2xl md:text-3xl font-bold mb-8 text-white" initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>Unsere <span className="text-accent">Agenten</span></motion.h2>
       <div className="grid md:grid-cols-3 gap-6">
@@ -25,7 +29,11 @@ export default function Home(){return (<>
         <AgentCard title="Produktberater · GPT‑Agent (Custom GPT)" subtitle="Berät zu Produkten & Leistungen, steigert Conversion & Entlastung im Vertrieb." cta="Demo anfragen"/>
       </div>
       <div className="mt-6 grid md:grid-cols-3 gap-6">
-        <AgentCard title="Verkaufsgesprächs‑führender Voice‑Agent" subtitle="Live ausprobieren – Coming Soon." comingSoon/>
+        <AgentCard
+  title="Weitere spezialisierte Agenten"
+  subtitle="Je nach Anwendungsfall entwickeln wir weitere KI-Agenten passgenau für Ihr Unternehmen."
+  cta="Jetzt informieren"
+/>
       </div>
     </div></section>
     <Reasons/>
