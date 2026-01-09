@@ -4,7 +4,7 @@ import Image from 'next/image'
 const MESSAGES=["GPT‑ & Voice‑Agenten beantworten Anfragen in Sekunden.","Ihr KI‑Service‑Agent entlastet Ihr Team – 24/7.","Messbar effizient: weniger Tickets, mehr Zeit für das Wesentliche."]
 export default function Hero(){
   const [index,setIndex]=useState(0);useEffect(()=>{const id=setInterval(()=>setIndex(i=>(i+1)%MESSAGES.length),3200);return()=>clearInterval(id)},[])
-  return (<section className="relative pt-28 pb-16 md:pt-32 md:pb-24 hero-gradient overflow-hidden">
+  return (<section className="relative pt-28 pb-10 md:pt-32 md:pb-14 hero-gradient overflow-hidden">
     <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <motion.h1
