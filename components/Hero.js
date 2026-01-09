@@ -8,7 +8,7 @@ export default function Hero(){
     <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <motion.h1
-  className="text-4xl md:text-[36px] font-extrabold leading-[1.3] text-white"
+  className="text-3xl md:text-[36px] font-extrabold leading-[1.3] text-white"
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8 }}
