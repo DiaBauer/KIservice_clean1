@@ -9,13 +9,13 @@ export default function NavBar() {
         {/* LOGO */}
         <Link href="/" className="flex items-center pt-1">
   <Image
-    src="/logo.png"
-    width={88}
-    height={88}
-    alt="KI.service – Produktisierte KI-Agenten für Unternehmen"
-    className="drop-shadow-xl"
-    priority
-  />
+  src="/logo.png"
+  width={88}
+  height={88}
+  alt="KI.service – Produktisierte KI-Agenten für Unternehmen"
+  className="drop-shadow-xl scale-125 origin-left"
+  priority
+/>
 </Link>
 
         {/* NAVIGATION */}
