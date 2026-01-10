@@ -73,8 +73,8 @@ export default function AnimatedBackground() {
 
           if (d < LINK_DIST) {
             const a = 1 - d / LINK_DIST
-            ctx.strokeStyle = `rgba(255,255,255,${0.35 * a})`
-            ctx.lineWidth = 1
+            ctx.strokeStyle = `rgba(255,255,255,${0.22 * alpha})``
+            ctx.lineWidth = 1.1
             ctx.beginPath()
             ctx.moveTo(pts[i].x, pts[i].y)
             ctx.lineTo(pts[j].x, pts[j].y)
@@ -89,8 +89,8 @@ export default function AnimatedBackground() {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r + pulse, 0, Math.PI * 2)
         ctx.fillStyle = p.warm
-          ? 'rgba(245,184,0,0.9)'     // warmes Gelb
-          : 'rgba(255,255,255,0.9)'  // klares Weiß
+          ? 'rgba(245,200,120,0.65)'   // warme Akzent-Neuronen (dezenter)
+          : 'rgba(255,255,255,0.45)'  // neutrale Knoten (zurückgenommen)
         ctx.fill()
       }
 
