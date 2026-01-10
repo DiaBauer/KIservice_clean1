@@ -5,7 +5,7 @@ const items=[
   {title:'Technologie, die liefert',text:'GPT‑gestützt, selbstverwaltbar, mit messbarem ROI.'},
 ]
 export default function Reasons(){
-  return (<section id="loesung" className="py-16 bg-[rgba(255,255,255,0.02)]">
+  return (<section id="loesung" className="relative py-16 bg-transparent">
     <div className="mx-auto max-w-6xl px-4">
       <h2 className="text-2xl md:text-3xl font-bold mb-8">Warum <span className="text-accent">ki.service?</span></h2>
       <div className="grid md:grid-cols-3 gap-6">
