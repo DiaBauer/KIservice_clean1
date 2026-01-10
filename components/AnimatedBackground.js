@@ -88,10 +88,12 @@ export default function AnimatedBackground() {
         const pulse = Math.sin(t * 0.02 + p.phase) * 0.4
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r + pulse, 0, Math.PI * 2)
-        ctx.fillStyle = p.warm
-          ? 'rgba(245,200,120,0.65)'   // warme Akzent-Neuronen (dezenter)
-          : 'rgba(255,255,255,0.45)'  // neutrale Knoten (zurückgenommen)
-        ctx.fill()
+        const intensity = p.warm ? 0.7 : 0.4
+ctx.fillStyle = p.warm
+  ? `rgba(245,200,120,${intensity})`
+  : `rgba(255,255,255,${intensity * 0.7})`
+ctx.fill()
+
       }
 
       animationId = requestAnimationFrame(draw)
