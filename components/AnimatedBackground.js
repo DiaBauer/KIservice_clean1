@@ -12,97 +12,98 @@ export default function AnimatedBackground() {
     let height = window.innerHeight
 
     const DPR = window.devicePixelRatio || 1
-    canvas.width = width * DPR
-    canvas.height = height * DPR
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
 
-    // 🔧 FEINTUNING (ruhig, hochwertig)
-    const POINTS = Math.min(160, Math.floor((width * height) / 10000))
+    function resize() {
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = width * DPR
+      canvas.height = height * DPR
+      canvas.style.width = width + 'px'
+      canvas.style.height = height + 'px'
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
+    }
+
+    resize()
+
+    // ⭐ Premium-Parameter
+    const STAR_COUNT = Math.min(180, Math.floor((width * height) / 9000))
     const SPEED = 0.12
+    const LINK_DIST = 110
 
-    const pts = Array.from({ length: POINTS }).map(() => ({
+    const stars = Array.from({ length: STAR_COUNT }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * SPEED,
       vy: (Math.random() - 0.5) * SPEED,
-      baseR: Math.random() * 1.3 + 0.7,
+      r: Math.random() * 1.4 + 0.6,
       phase: Math.random() * Math.PI * 2
     }))
 
-    let time = 0
+    let t = 0
 
     function draw() {
-      time += 1
+      t += 0.015
       ctx.clearRect(0, 0, width, height)
 
-      // 🌌 Sehr dezenter globaler Lichtverlauf
-      const grad = ctx.createRadialGradient(
+      // 🌌 sanfter globaler Glow (über gesamte Seite)
+      const glow = ctx.createRadialGradient(
         width * 0.6,
-        height * 0.2,
+        height * 0.25,
         80,
         width * 0.6,
-        height * 0.2,
+        height * 0.25,
         Math.max(width, height)
       )
-      grad.addColorStop(0, 'rgba(23,180,255,0.06)')
-      grad.addColorStop(1, 'transparent')
-      ctx.fillStyle = grad
+      glow.addColorStop(0, 'rgba(23,180,255,0.08)')
+      glow.addColorStop(1, 'transparent')
+      ctx.fillStyle = glow
       ctx.fillRect(0, 0, width, height)
 
-      // ⭐ Bewegung
-      for (const p of pts) {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0 || p.x > width) p.vx *= -1
-        if (p.y < 0 || p.y > height) p.vy *= -1
+      // Bewegung
+      for (const s of stars) {
+        s.x += s.vx
+        s.y += s.vy
+        if (s.x < 0 || s.x > width) s.vx *= -1
+        if (s.y < 0 || s.y > height) s.vy *= -1
       }
 
-      // 🔗 Linien (sehr subtil)
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x
-          const dy = pts[i].y - pts[j].y
+      // Linien
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x
+          const dy = stars[i].y - stars[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
 
-          if (dist < 100) {
-            const alpha = 1 - dist / 100
-            ctx.strokeStyle = `rgba(23,180,255,${0.10 * alpha})`
+          if (dist < LINK_DIST) {
+            const a = 1 - dist / LINK_DIST
+            ctx.strokeStyle = `rgba(23,180,255,${0.10 * a})`
             ctx.lineWidth = 1
             ctx.beginPath()
-            ctx.moveTo(pts[i].x, pts[i].y)
-            ctx.lineTo(pts[j].x, pts[j].y)
+            ctx.moveTo(stars[i].x, stars[i].y)
+            ctx.lineTo(stars[j].x, stars[j].y)
             ctx.stroke()
           }
         }
       }
 
-      // ✨ Sterne mit leichtem Puls
-      for (const p of pts) {
-        const pulse = Math.sin(time * 0.02 + p.phase) * 0.4
-        const r = p.baseR + pulse
+      // Sterne (leicht pulsierend)
+      for (const s of stars) {
+        const pulse = Math.sin(t + s.phase) * 0.4
         ctx.beginPath()
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(245,184,0,0.65)'
+        ctx.arc(s.x, s.y, s.r + pulse, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(245,184,0,0.75)'
         ctx.fill()
       }
 
       animationId = requestAnimationFrame(draw)
     }
 
-    function onResize() {
-      width = window.innerWidth
-      height = window.innerHeight
-      canvas.width = width * DPR
-      canvas.height = height * DPR
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
-    }
-
-    window.addEventListener('resize', onResize)
     draw()
+    window.addEventListener('resize', resize)
 
     return () => {
       cancelAnimationFrame(animationId)
-      window.removeEventListener('resize', onResize)
+      window.removeEventListener('resize', resize)
     }
   }, [])
 
