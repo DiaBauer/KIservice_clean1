@@ -20,7 +20,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden">
+    <section className="relative pt-28 pb-12 md:pt-32 md:pb-16 hero-gradient/70 overflow-hidden">
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
         
         {/* LEFT */}
