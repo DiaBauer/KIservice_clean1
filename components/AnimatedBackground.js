@@ -14,20 +14,19 @@ export default function AnimatedBackground() {
     const DPR = window.devicePixelRatio || 1
     canvas.width = width * DPR
     canvas.height = height * DPR
-    ctx.scale(DPR, DPR)
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
 
-    // 🔧 FEINTUNING-PARAMETER
-    const POINTS = Math.min(140, Math.floor((width * height) / 11000)) // mehr Sterne
-    const SPEED = 0.15 // deutlich ruhiger
+    // 🔧 FEINTUNING (ruhig, hochwertig)
+    const POINTS = Math.min(160, Math.floor((width * height) / 10000))
+    const SPEED = 0.12
 
-    const pts = Array.from({ length: POINTS }).map((_, i) => ({
+    const pts = Array.from({ length: POINTS }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * SPEED,
       vy: (Math.random() - 0.5) * SPEED,
-      baseR: Math.random() * 1.2 + 0.6,
-      phase: Math.random() * Math.PI * 2,
-      index: i
+      baseR: Math.random() * 1.3 + 0.7,
+      phase: Math.random() * Math.PI * 2
     }))
 
     let time = 0
@@ -36,21 +35,21 @@ export default function AnimatedBackground() {
       time += 1
       ctx.clearRect(0, 0, width, height)
 
-      // 🌌 Sanfter Lichtverlauf (ruhiger als vorher)
+      // 🌌 Sehr dezenter globaler Lichtverlauf
       const grad = ctx.createRadialGradient(
-        width * 0.7,
-        height * 0.25,
-        60,
-        width * 0.7,
-        height * 0.25,
+        width * 0.6,
+        height * 0.2,
+        80,
+        width * 0.6,
+        height * 0.2,
         Math.max(width, height)
       )
-      grad.addColorStop(0, 'rgba(23,180,255,0.08)')
+      grad.addColorStop(0, 'rgba(23,180,255,0.06)')
       grad.addColorStop(1, 'transparent')
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, width, height)
 
-      // ⭐ Bewegung & Begrenzung
+      // ⭐ Bewegung
       for (const p of pts) {
         p.x += p.vx
         p.y += p.vy
@@ -58,16 +57,16 @@ export default function AnimatedBackground() {
         if (p.y < 0 || p.y > height) p.vy *= -1
       }
 
-      // 🔗 Dezente Linien (nur bei Nähe, sehr fein)
+      // 🔗 Linien (sehr subtil)
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
           const dx = pts[i].x - pts[j].x
           const dy = pts[i].y - pts[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
 
-          if (dist < 90) {
-            const alpha = 1 - dist / 90
-            ctx.strokeStyle = `rgba(23,180,255,${0.12 * alpha})`
+          if (dist < 100) {
+            const alpha = 1 - dist / 100
+            ctx.strokeStyle = `rgba(23,180,255,${0.10 * alpha})`
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(pts[i].x, pts[i].y)
@@ -77,14 +76,13 @@ export default function AnimatedBackground() {
         }
       }
 
-      // ✨ Sterne mit leichtem Pulsieren
+      // ✨ Sterne mit leichtem Puls
       for (const p of pts) {
         const pulse = Math.sin(time * 0.02 + p.phase) * 0.4
         const r = p.baseR + pulse
-
         ctx.beginPath()
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(245,184,0,0.75)'
+        ctx.fillStyle = 'rgba(245,184,0,0.65)'
         ctx.fill()
       }
 
@@ -94,7 +92,6 @@ export default function AnimatedBackground() {
     function onResize() {
       width = window.innerWidth
       height = window.innerHeight
-      const DPR = window.devicePixelRatio || 1
       canvas.width = width * DPR
       canvas.height = height * DPR
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
@@ -109,13 +106,11 @@ export default function AnimatedBackground() {
     }
   }, [])
 
-  // 🌐 GANZSEITIGER HINTERGRUND
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10"
+      className="fixed inset-0 z-0 pointer-events-none"
       aria-hidden="true"
     />
   )
 }
-
